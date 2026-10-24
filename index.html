@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f172a">
+<title>NK Real Estate | Projects</title>
+<!-- Favorites: projects use a small star; units use a compact bookmark. -->
+<style>
+:root{--navy:#0f172a;--navy2:#172554;--green:#15803d;--green2:#dcfce7;--bg:#f1f5f9;--card:#fff;--muted:#64748b;--line:#e2e8f0;--text:#0f172a}
+*{box-sizing:border-box}html{font-size:16px}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}
+.app{max-width:1500px;margin:auto;min-height:100vh}
+.topbar{background:var(--navy);color:#fff;padding:24px clamp(16px,3vw,38px) 20px;position:relative}
+.brandrow{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:14px}.logo{width:54px;height:54px;border-radius:16px;background:#fff;color:var(--navy);display:grid;place-items:center;font-weight:900;font-size:23px}
+.brand h1{font-size:clamp(22px,3vw,32px);margin:0}.brand p{margin:5px 0 0;color:#cbd5e1;font-size:14px}
+.localtag{border:1px solid #475569;color:#e2e8f0;padding:9px 13px;border-radius:999px;font-size:13px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.search{flex:1;min-width:220px;background:#fff;border:0;border-radius:12px;padding:13px 15px;color:#0f172a;outline:none}
+.select{border:1px solid #475569;background:#1e293b;color:#fff;border-radius:12px;padding:12px;min-width:170px}
+.content{padding:clamp(14px,2.5vw,32px)}
+.summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:22px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:17px}.stat .label{color:var(--muted);font-size:13px}.stat .num{font-size:clamp(21px,2vw,29px);font-weight:800;margin-top:7px}
+.project{background:#fff;border:1px solid var(--line);border-radius:20px;margin-bottom:22px;overflow:hidden;box-shadow:0 5px 18px #0f172a08}
+.projecthead{background:linear-gradient(120deg,var(--navy),#1e3a5f);color:#fff;padding:22px;display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.projecttitle h2{margin:0;font-size:clamp(22px,2.4vw,30px);letter-spacing:.2px;direction:ltr;text-align:right}
+.projecttitle .developer{color:#cbd5e1;margin-top:6px;font-size:14px}
+.projecttitle .range{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:#ffffff12;border:1px solid #ffffff30;border-radius:10px;padding:8px 11px;color:#fff;font-size:13px;font-weight:700}
+.projecttitle .range strong{font-size:15px;color:#bbf7d0}
+.projecthead .details{width:100%;grid-template-columns:repeat(4,minmax(0,1fr));margin:8px 0 0;flex-basis:100%}.projecthead .detail{background:#ffffff12;border:1px solid #ffffff30;color:#fff}.projecthead .detail span{color:#cbd5e1}.projecthead .detail b{color:#fff;display:block;overflow-wrap:anywhere}.projecthead .head-main{display:flex;direction:ltr;justify-content:space-between;align-items:flex-start;gap:18px;width:100%}.projecthead .cash{order:1;margin-left:auto;margin-right:0;flex-shrink:0}.projecthead .projecttitle{order:0;flex:1;text-align:left;direction:ltr;min-width:0}.projecttitle h2{text-align:left}.projecttitle .meta{justify-content:flex-start}
+.projecthead .actions{width:100%;margin:0;flex-basis:100%}.projecthead .action{background:#fff;color:#0f172a}.projecthead .action.primary{background:#fff;color:#0f172a;border-color:#fff}
+.area strong,.unitarea{font-weight:900;font-size:1.15em;color:var(--text)}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.pill{display:inline-flex;align-items:center;gap:5px;background:#ffffff15;border:1px solid #ffffff2a;padding:7px 10px;border-radius:999px;font-size:12px;color:#f8fafc}
+.cash{background:#166534;border:1px solid #4ade80;border-radius:14px;padding:13px 18px;min-width:142px;text-align:center}.cash small{display:block;color:#dcfce7;font-size:12px}.cash strong{display:block;font-size:25px;margin-top:4px}
+.projectbody{padding:20px}
+.details{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:18px}
+.detail{background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:12px}.detail span{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}.detail b{font-size:14px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.action{background:#fff;border:1px solid #cbd5e1;color:var(--navy);padding:9px 13px;border-radius:10px;font-size:13px;font-weight:700}.action.primary{background:var(--navy);border-color:var(--navy);color:#fff}.action.green{background:var(--green2);border-color:#86efac;color:#166534}
+.sectiontitle{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:16px 0 12px}.sectiontitle h3{margin:0;font-size:18px}.sectiontitle span{color:var(--muted);font-size:12px}
+.units{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.unit{border:1px solid var(--line);border-radius:15px;padding:15px;background:#fff;min-width:0}
+.unithead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.unittype{font-weight:800;font-size:15px}.area{color:var(--muted);font-size:13px;margin-top:5px}.price{font-weight:900;font-size:22px;direction:ltr;text-align:right;white-space:nowrap}.currency{font-size:11px;color:var(--muted);font-weight:500}
+.unitline{height:1px;background:var(--line);margin:13px 0}.downrow{display:flex;justify-content:space-between;align-items:center;gap:8px}.downrow span{font-size:12px;color:var(--muted)}.downrow strong{font-size:15px;color:#166534;text-align:left;direction:ltr}
+.unitfoot{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:13px}.smallbtn{border:1px solid #cbd5e1;background:#f8fafc;color:var(--navy);padding:7px 10px;border-radius:8px;font-size:12px;font-weight:700}
+.starbtn{display:inline-grid;place-items:center;border:1px solid #ffffff35;background:#ffffff12;color:#cbd5e1;border-radius:50%;width:23px;height:23px;min-width:23px;min-height:23px;font-size:12px;line-height:1;padding:0;cursor:pointer;vertical-align:middle;transition:background .15s,color .15s,border-color .15s}.starbtn:hover{background:#ffffff24;color:#fff}.starbtn.is-fav{color:#fbbf24;border-color:#fbbf2480;background:#fbbf2418}.bookmarkbtn{display:inline-grid;place-items:center;width:27px;height:29px;min-width:27px;border:1px solid #e2e8f0;border-radius:8px;background:#f8fafc;color:#64748b;padding:0;cursor:pointer;transition:background .15s,color .15s,border-color .15s}.bookmarkbtn svg{width:14px;height:16px;display:block}.bookmarkbtn:hover{border-color:#94a3b8;background:#f1f5f9}.bookmarkbtn.is-fav{color:#0f172a;background:#e2e8f0;border-color:#94a3b8}.unitname-row{display:flex;align-items:center;gap:7px;min-width:0}.unitname-row .unittype{min-width:0}
+.plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}.plan{border:1px solid var(--line);border-radius:14px;padding:15px;background:#f8fafc}.plan h4{margin:0 0 8px;font-size:15px}.plan p{margin:0;color:#475569;font-size:13px;line-height:1.7}
+.note{background:#fffbeb;border:1px solid #fde68a;color:#854d0e;padding:12px 14px;border-radius:12px;font-size:13px;line-height:1.6;margin-top:14px}
+.empty{display:none;text-align:center;color:var(--muted);padding:35px}
+footer{text-align:center;color:var(--muted);padding:8px 16px 28px;font-size:12px}
+.modalback{position:fixed;inset:0;background:#020617a8;display:none;align-items:center;justify-content:center;padding:16px;z-index:10}
+.modal{width:min(520px,100%);background:#fff;border-radius:18px;padding:22px;max-height:90vh;overflow:auto}.modal h3{margin:0 0 15px}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:13px;color:#475569}.field input,.field select{width:100%;border:1px solid #cbd5e1;border-radius:10px;padding:12px;background:#fff;color:#0f172a}.modalbuttons{display:flex;gap:8px;margin-top:18px}.modalbuttons button{flex:1;padding:12px;border-radius:10px;border:1px solid #cbd5e1;background:#fff}.modalbuttons .save{background:var(--navy);color:#fff;border-color:var(--navy)}
+@media(max-width:900px){.projecthead .details{grid-template-columns:repeat(2,minmax(0,1fr))}.summary{grid-template-columns:repeat(2,minmax(0,1fr))}.units{grid-template-columns:repeat(2,minmax(0,1fr))}.details{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.projecthead .head-main{gap:10px}.projecthead .cash{min-width:112px;padding:10px}.projecthead .cash strong{font-size:20px}.projecthead .details{grid-template-columns:repeat(2,minmax(0,1fr))}.topbar{padding:18px 14px}.content{padding:12px}.summary{gap:8px}.stat{padding:13px}.units{grid-template-columns:1fr}.projecthead{padding:17px}.projectbody{padding:13px}.plans{grid-template-columns:1fr}.select{flex:1}.cash{min-width:120px}.price{font-size:21px}}
+@media(min-width:1000px){.projectbody{padding:26px}.unit{padding:18px}.projecthead{padding:26px}.details{gap:14px}.units{gap:15px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+ <div class="brandrow">
+  <div class="brand"><div class="logo">NK</div><div><h1>NK Real Estate</h1><p>Project Database · Local Offline Version</p></div></div>
+  <div class="localtag">● Works without an account or cloud database</div>
+ </div>
+ <div class="toolbar">
+  <input class="search" id="search" type="search" placeholder="Search by project, developer, unit type, or area..." aria-label="Search">
+  <select class="select" id="areaFilter" aria-label="Filter by location"><option value="">All Locations</option><option>New Cairo</option><option>New Heliopolis</option><option>Mostakbal City</option></select>
+  <select class="select" id="typeFilter" aria-label="Filter by unit type"><option value="">All Unit Types</option><option>Villa</option><option>Standalone Villa</option><option>iVilla</option><option>Town House</option><option>Twin House</option><option>Twin Villa</option><option>Apartment</option><option>Family House</option><option>Other</option></select>
+   <button class="select" id="favoritesToggle" type="button" aria-pressed="false" style="min-width:auto">☆ Favorites</button>
+   <button class="select" id="addProjectButton" type="button" style="min-width:auto;background:#fff;color:#0f172a;border-color:#fff;font-weight:800">+ Add Project</button>
+ </div>
+</header>
+<main class="content">
+ <section class="summary">
+  <div class="stat"><div class="label tr" data-ar="Projects" data-en="Projects">المشروعات المسجلة</div><div class="num" id="projectCount">12</div></div>
+  <div class="stat"><div class="label tr" data-ar="Units" data-en="Units">Units</div><div class="num" id="unitCount">—</div></div>
+  <div class="stat"><div class="label tr" data-ar="Responsive layout" data-en="Responsive layout">واجهة مناسبة</div><div class="num">iPad + iPhone</div></div>
+  <div class="stat"><div class="label tr" data-ar="Storage" data-en="Storage">التخزين</div><div class="num">Local</div></div>
+ </section>
+ <div id="projects"></div>
+ <div class="empty" id="empty">No matching results.</div>
+</main>
+<footer>NK Real Estate · Standalone version without cloud services · project and unit edits are saved locally on this device.</footer>
+</div>
+<div class="modalback" id="modalback" role="dialog" aria-modal="true">
+ <div class="modal">
+  <h3 id="unitModalTitle">Edit Unit Details</h3>
+  <div class="field"><label for="editType">Unit Type</label><input id="editType"></div>
+  <div class="field"><label for="editArea">Area (m²)</label><input id="editArea" type="number" min="1"></div>
+  <div class="field"><label for="editPrice">Minimum Price (EGP)</label><input id="editPrice" type="number" min="0"></div>
+  <div class="field"><label for="editPriceMax">Maximum Price (optional, EGP)</label><input id="editPriceMax" type="number" min="0" placeholder="Leave blank for a single price"></div>
+  <div class="field"><label for="editDp">Down Payment %</label><input id="editDp" type="number" min="0" max="100" step="0.5"></div>
+  <div class="field"><label for="editUnitDelivery">Delivery</label><input id="editUnitDelivery"></div>
+  <div class="field"><label for="editUnitFinishing">Finishing</label><input id="editUnitFinishing"></div>
+  <div class="field"><label for="editUnitBeds">Bedrooms</label><input id="editUnitBeds" type="number" min="0"></div>
+  <div class="field"><label for="editUnitLand">Land Area (if applicable)</label><input id="editUnitLand" type="number" min="0"></div>
+  <div class="field"><label for="editUnitExtra">Additional Details</label><input id="editUnitExtra"></div>
+  <div class="modalbuttons"><button id="cancelEdit">Cancel</button><button class="save" id="saveEdit">Save Changes</button></div>
+ </div>
+</div>
+<div class="modalback" id="projectEditModal" role="dialog" aria-modal="true">
+ <div class="modal">
+  <h3>Edit Project Details</h3>
+  <div class="field"><label for="projName">Project Name</label><input id="projName"></div>
+  <div class="field"><label for="projDeveloper">Developer</label><input id="projDeveloper"></div>
+  <div class="field"><label for="projLocation">Location</label><input id="projLocation"></div>
+  <div class="field"><label for="projType">Unit Types / Project Category</label><input id="projType"></div>
+  <div class="field"><label for="projFinishing">Finishing</label><input id="projFinishing"></div>
+  <div class="field"><label for="projDelivery">Delivery</label><input id="projDelivery"></div>
+  <div class="field"><label for="projDp">Down Payment</label><input id="projDp"></div>
+  <div class="field"><label for="projInstallment">Installment Period</label><input id="projInstallment"></div>
+  <div class="field"><label for="projCash">Cash Discount</label><input id="projCash"></div>
+  <div class="field"><label for="projMaintenance">Maintenance</label><input id="projMaintenance"></div>
+  <div class="field"><label for="projNotes">Project Notes</label><input id="projNotes"></div>
+  <div class="modalbuttons"><button id="cancelProjectEdit">Cancel</button><button class="save" id="saveProjectEdit">Save Project Details</button></div>
+  <p style="font-size:12px;color:#64748b;line-height:1.6">Changes are saved locally in this browser on this device.</p>
+ </div>
+</div>
+<div class="modalback" id="filesModal" role="dialog" aria-modal="true">
+ <div class="modal">
+  <h3 id="filesTitle">Project Files</h3>
+  <p id="filesHint" style="font-size:13px;color:#64748b;line-height:1.6;margin-top:-5px">Add or remove PDFs and photos for this project. Files are stored only in this browser on this device.</p>
+  <div class="field"><label for="pdfUpload">Add PDF File</label><input id="pdfUpload" type="file" accept="application/pdf,.pdf" multiple></div>
+  <div class="field"><label for="photoUpload">Add Photos</label><input id="photoUpload" type="file" accept="image/*" multiple></div>
+  <div id="projectFilesList" style="display:grid;gap:8px;margin-top:14px"></div>
+  <div class="modalbuttons"><button id="closeFiles">Close</button></div>
+ </div>
+</div>
+
+<div class="modalback" id="previewModal" role="dialog" aria-modal="true" style="z-index:20">
+ <div class="modal" style="width:min(1000px,100%);height:min(88vh,900px);display:flex;flex-direction:column">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px"><h3 id="previewTitle" style="margin:0">Preview</h3><button class="smallbtn" onclick="closePreview()">Close</button></div>
+  <div id="previewContent" style="flex:1;min-height:0;overflow:auto;display:grid;place-items:center"></div>
+ </div>
+</div>
+<script>
+const projects = [
+{id:'lavista',name:'La Vista City',developer:'La Vista Developments',location:'New Cairo',type:'Villas Only',finishing:'Fully Finished',delivery:'Ready to Move',dpText:'10% or 20%, depending on the unit',installment:'8 years',cash:'31.5%',maintenance:'10%',notes:'Cash discount should not be assumed to apply to installment plans. No confirmed administrative fees are available.',units:[
+{type:'Town House',area:216,price:30000000,dp:10,beds:3},{type:'Town House',area:253,price:34000000,dp:10,beds:4},{type:'Twin House',area:275,price:36800000,dp:10,beds:4},{type:'Standalone Villa',area:303,price:44800000,dp:20,beds:3},{type:'Standalone Villa',area:336,price:51200000,dp:20,beds:3},{type:'Standalone Villa',area:424,price:63900000,dp:20,beds:5},{type:'Standalone Villa',area:450,price:66500000,dp:20,beds:5}]},
+{id:'patio-town',name:'El Patio Town',developer:'La Vista Developments',location:'New Cairo',type:'Townhouses',finishing:'Unconfirmed',delivery:'2 years (tentative; source lists 1/1/2028)',dpText:'5% + 5%',installment:'7 years (per available source)',cash:'Not specified',maintenance:'8%',notes:'Garden Town Middle: the source conflicts between 30M in the installment table and 34M on the unit page. Price requires confirmation. Town House Corner 26F is listed at 38M, with 245 m² BUA and 269 m² land.',units:[
+{type:'Garden Town Middle',area:215,land:147,price:34000000,priceMin:30000000,dp:5,extra:'Conflicting source price: 30M or 34M'},{type:'Town House Corner 26F',area:245,land:269,price:38000000,dp:5}]},
+{id:'townside',name:'El Patio TownSide',developer:'La Vista Developments',location:'New Cairo',type:'Villas Only',finishing:'Core & Shell',delivery:'4 years',dpText:'5%',installment:'8 years',cash:'25%',maintenance:'8%',notes:'EOI: EGP 300,000 for Side House; EGP 400,000 for other villas. This is separate from El Patio Town.',units:[
+{type:'Side House',area:225,land:'237–335',price:31190000,dp:5,extra:'3 Bedrooms + Living'},{type:'Icon Villa',area:225,land:'262–351',price:35800000,dp:5,extra:'3 Bedrooms + Living'},{type:'Prime Villa',area:265,land:'299–368',price:40190000,dp:5,extra:'4 Bedrooms + Living + Nanny’s Room'},{type:'Grande Villa',area:310,land:'349–374',price:49430000,dp:5,extra:'4 Master Bedrooms + Dressing + Nanny’s Room + Living'},{type:'Signature Villa',area:411,land:'508–579',price:70430000,dp:5,extra:'Office + 4 Master Bedrooms + Living'}]},
+{id:'eastshire',name:'Eastshire',developer:'El Qamzi',location:'New Cairo',type:'Townhouses',finishing:'Core & Shell',delivery:'Within 1 year (per unit files)',dpText:'10%',installment:'7 years',cash:'Not specified',maintenance:'8%',notes:'Prices are from the supplied unit files; availability must be confirmed.',units:[
+{type:'Townville',area:166,price:23062000,dp:10},{type:'Shireville',area:261,price:34860000,dp:10},{type:'Renaissance Townhouse',area:285,price:41751000,dp:10}]},
+{id:'grova',name:'Grova East Hills',developer:'Hassan Allam Holding',location:'New Cairo',type:'Villas Only',finishing:'Fully Finished',delivery:'3 years',dpText:'5% + 5% after 3 months',installment:'8 years',cash:'25%',maintenance:'7%',notes:'',units:[
+{type:'Town House Middle · BUA 263 / Land 310',area:263,land:310,price:34500000,dp:5},{type:'Town House Corner · BUA 263 / Land 395',area:263,land:395,price:37000000,dp:5},{type:'Twin House · BUA 287 / Land 405',area:287,land:405,price:40500000,dp:5},{type:'Villa V1 · BUA 332 / Land 440',area:332,land:440,price:47900000,dp:5},{type:'Villa V2 · BUA 397 / Land 580',area:397,land:580,price:62400000,dp:5},{type:'Villa V3 · BUA 465 / Land 630',area:465,land:630,price:100300000,dp:5}]},
+{id:'mountain-view-11',name:'Mountain View 1.1',developer:'Mountain View Developments',location:'New Cairo',type:'Villas',finishing:'Fully Finished',delivery:'Ready to Move',dpText:'20% for standalone villas; 5% for iVilla',installment:'Not specified',cash:'Not specified',maintenance:'Not specified',notes:'Data entered from the supplied information: ready to move and fully finished. Installment period, maintenance, and cash discount are not specified.',units:[
+{type:'Standalone Villa',area:255,price:55000000,dp:20,delivery:'Ready to Move',finishing:'Fully Finished'},
+{type:'Standalone Villa',area:670,price:200000000,dp:20,delivery:'Ready to Move',finishing:'Fully Finished'},
+{type:'iVilla',area:216,price:26000000,dp:5,delivery:'Ready to Move',finishing:'Fully Finished',extra:'Starting area and price based on supplied information'},
+{type:'Town House',area:210,price:41000000,dp:20,beds:3,delivery:'Ready to Move',finishing:'Fully Finished'}]},
+{id:'zomra',name:'Zomra',developer:'Nations of Sky',location:'New Cairo',type:'Town House · Twin Villa · Standalone Villa',finishing:'Core & Shell',delivery:'3 years',dpText:'5%',installment:'Not specified',cash:'Not specified',maintenance:'Not specified',notes:'Core & Shell finishing and delivery in 3 years, according to the supplied information. Installment period, maintenance, and cash discount are not specified.',units:[
+{type:'Town House',area:215,price:29200000,dp:5,delivery:'In 3 years',finishing:'Core & Shell'},
+{type:'Twin Villa',area:270,price:41000000,dp:5,delivery:'In 3 years',finishing:'Core & Shell'},
+{type:'Standalone Villa',area:230,price:41000000,dp:5,delivery:'In 3 years',finishing:'Core & Shell'}]},
+{id:'stei8ht',name:'STEI8HT',developer:'LMD',location:'New Cairo',type:'Villas · Twin Houses',finishing:'Core & Shell – Red Brick',delivery:'2 years (unconfirmed start date)',dpText:'5% + 5% after 3 months (confirm per unit)',installment:'7 years (shown for Twin offer; confirm for each unit)',cash:'Not specified',maintenance:'Not specified',notes:'Updated from user-provided broker messages and project brochure screenshots. Delivery: 2 years; finishing: unfinished, per latest user clarification. Twin House: 345 m² BUA, EGP 42M, payment over 7 years per message. Select Villa V16: 410 m² BUA, EGP 62M. Another 486 m² standalone villa remains listed at EGP 81M from earlier supplied data. Land areas, current availability, exact payment schedule, and whether the same delivery/finishing applies to every unit should be confirmed before client presentation.',units:[
+{type:'Twin House',area:345,areaLabel:'BUA',price:42000000,dp:5,delivery:'2 years',finishing:'Unfinished',extra:'Payment over 7 years per supplied message; land area not provided'},
+{type:'Standalone Villa · Select Villa V16',area:410,areaLabel:'BUA',price:62000000,dp:5,delivery:'2 years',finishing:'Unfinished',extra:'Price from supplied screenshot; land area and payment details not provided'},
+{type:'Standalone Villa',area:486,areaLabel:'BUA',price:81000000,dp:5,delivery:'2 years',finishing:'Unfinished'}]},
+{id:'solana',name:'Solana East',developer:'ORA Developments',location:'New Cairo',type:'Villas',finishing:'Fully Finished',delivery:'3 years (per image)',dpText:'5%',installment:'8 years',cash:'Not specified',maintenance:'Not specified',notes:'Prices are taken from the supplied image and do not confirm current availability.',units:[
+{type:'Town House',area:210,price:44000000,dp:5},{type:'Twin Villa',area:240,price:54000000,dp:5},{type:'Standalone Villa',area:369,price:119000000,dp:5}]},
+{id:'eastville',name:'EASTVILLE',developer:'Ajna Developments',location:'New Cairo',type:'Villas Only',finishing:'Not specified in source',delivery:'2 or 4 years, depending on the unit',dpText:'5% (offer) or 10% for some plans',installment:'9 or 5 years for 2-year delivery; 10 or 6 years for 4-year delivery',cash:'25% for some plans',maintenance:'Not specified in source',notes:'The 25% discount applies to certain plans per the image. The 5% down payment is calculated tentatively from the displayed price. The 160 m² Middle price is unclear in the image and is tentatively entered as 12.45M.',units:[
+{type:'Town House Middle',area:160,price:12450000,dp:5,delivery:'4 years',extra:'Price in image is incomplete; 12.45M is tentative'},{type:'Town House Corner',area:160,price:13800000,dp:5,delivery:'4 years'},{type:'Town House Middle',area:190,price:16430000,priceMax:20614000,dp:5,delivery:'2 or 4 years'},{type:'Town House Corner',area:190,price:18440000,priceMax:21000000,dp:5,delivery:'2 or 4 years'},{type:'Town House Middle',area:230,price:20277000,priceMax:22732000,dp:5,delivery:'2 or 4 years'},{type:'Town House Corner',area:230,price:22326000,priceMax:24717000,dp:5,delivery:'2 or 4 years'},{type:'Twin House',area:290,price:32000000,dp:5,delivery:'4 years'}],
+plans:[['2-year delivery','5% down payment + 5% after 3 months + 10% upon delivery after 2 years; remaining balance in equal installments over 9 years.'],['Alternative plan with discount','10% down payment, equal installments over 5 years, 25% discount.'],['4-year delivery','5% down payment and equal installments over 10 years.'],['Alternative plan with discount','10% down payment, equal installments over 6 years, 25% discount.']]},
+{id:'sodic',name:'SODIC EAST – New Heliopolis',developer:'SODIC',location:'New Heliopolis',type:'Mixed Units',finishing:'Varies by phase and unit',delivery:'Not specified in source',dpText:'5%',installment:'Not specified in source',cash:'Not specified in source',maintenance:'Not specified in source',notes:'Phases and data are based on supplied images. The 5% down payment was confirmed by the user. Availability, delivery, and installment details need confirmation.',units:[
+{type:'ORCHID · Villa · Core & Shell',area:395,price:69600000,dp:5},{type:'OAK · Apartment · Fully Finished',area:125,price:13700000,dp:5},{type:'HAZEL · Family House · Fully Finished',area:183,price:30900000,dp:5},{type:'HAZEL · Townhouse · Fully Finished',area:221,price:32900000,dp:5},{type:'HAZEL · Villa · Fully Finished',area:237,price:44700000,dp:5},{type:'ORCHID · Townhouse · Core & Shell',area:234,price:30300000,dp:5},{type:'ROSEWOOD · Family House · Core & Shell',area:183,price:28000000,dp:5},{type:'ROSEWOOD · Villa · Core & Shell',area:237,price:44700000,dp:5}]},
+{id:'saada-horizon',name:'Saada by Horizon',developer:'Horizon Egypt Developments',location:'Not specified',type:'Villas Only',finishing:'Unfinished',delivery:'Ready to Move / up to 6 months',dpText:'5% down payment + four 5% installments every 3 months',installment:'6 years',cash:'Not specified',maintenance:'Not specified',notes:'Data entered from the user-provided offer. Payment terms recorded as 5% down payment + 5% + 5% + 5% + 5% every 3 months, with the remaining balance over 6 years. Confirm the exact installment dates, whether all units share this plan, delivery timing per unit, location, maintenance, and current availability before client presentation.',units:[
+{type:'Standalone Villa',area:622,areaLabel:'BUA',land:593,price:82000000,dp:5,delivery:'Ready to Move / up to 6 months',finishing:'Unfinished'},
+{type:'Standalone Villa',area:776,areaLabel:'BUA',land:620,price:102000000,dp:5,delivery:'Ready to Move / up to 6 months',finishing:'Unfinished'},
+{type:'Twin House',area:520,areaLabel:'BUA',price:61000000,dp:5,delivery:'Ready to Move / up to 6 months',finishing:'Unfinished',extra:'Land area not provided'},
+{type:'Twin House',area:330,areaLabel:'BUA',land:334,price:42000000,dp:5,delivery:'Ready to Move / up to 6 months',finishing:'Unfinished'}]}
+];
+const money=n=>new Intl.NumberFormat('en-US',{maximumFractionDigits:0}).format(n);
+const shortMoney=n=>{if(n>=1000000){let m=n/1000000;return (Number.isInteger(m)?m:m.toFixed(3).replace(/0+$/,'').replace(/\.$/,'') )+'M'}return money(n)};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let currentLang='en';
+function areaRange(p){
+ const nums=p.units.map(u=>Number(u.area)).filter(n=>Number.isFinite(n)&&n>0);
+ if(!nums.length)return currentLang==='ar'?'Not specified':'Not specified';
+ const min=Math.min(...nums),max=Math.max(...nums);
+ return min===max?`${min} m²`:`${min}–${max} m²`;
+}
+function calcDp(u){return Math.round(u.price*(u.dp??5)/100)}
+function normSearch(v){return String(v??'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[\s._·–—-]+/g,'').replace(/ة/g,'ه').replace(/أ|إ|آ/g,'ا')}
+function searchableUnit(u){const price=Number(u.price)||0,priceMax=Number(u.priceMax)||0;const priceTerms=[price,priceMax,shortMoney(price),shortMoney(priceMax),money(price),money(priceMax),`${price/1000000}m`,`${priceMax/1000000}m`].join(' ');return normSearch([u.type,u.area,u.land,u.beds,priceTerms,u.dp+'%',u.delivery||'',u.finishing||'',u.extra||''].join(' '))}
+function unitCategory(type){const t=normSearch(type);if(t.includes('ivilla'))return 'ivilla';if(t.includes('twin'))return 'twin';if(t.includes('townhouse')||t.includes('townville')||t.includes('renaissancetownhouse'))return 'town';if(t.includes('standalone'))return 'standalone';if(t.includes('apartment'))return 'apartment';if(t.includes('familyhouse'))return 'family';if(t.includes('villa'))return 'villa';return 'other'}
+function queryUnitCategory(query){const q=normSearch(query);if(['townhouse','townhouses'].includes(q))return 'town';if(['twinhouse','twinvilla','twinvillas'].includes(q))return 'twin';if(['standalonevilla','standalonevillas'].includes(q))return 'standalone';if(['ivilla','ivillas'].includes(q))return 'ivilla';if(['familyhouse','familyhouses'].includes(q))return 'family';if(['apartment','apartments'].includes(q))return 'apartment';if(q==='villa'||q==='villas')return 'villa';return ''}
+function matchesUnitCategory(unit, category){const c=unitCategory(unit.type);return category==='villa'?(c==='villa'||c==='standalone'):c===category}
+function matches(p,query,area,type){const q=normSearch(query),projectHay=normSearch([p.name,p.developer,p.location].join(' '));const projectMatch=!q||projectHay.includes(q);const exactCat=queryUnitCategory(query);const unitMatch=!q||p.units.some(u=>exactCat?matchesUnitCategory(u,exactCat):searchableUnit(u).includes(q));const typ=normSearch(type);const typeMatch=!typ||p.units.some(u=>{const c=unitCategory(u.type);if(typ==='villa')return c==='villa'||c==='standalone';if(typ==='standalonevilla')return c==='standalone';if(typ==='townhouse')return c==='town';if(typ==='twinhouse')return c==='twin';if(typ==='ivilla')return c==='ivilla';if(typ==='other')return c==='other';if(typ==='familyhouse')return c==='family';return normSearch(u.type).includes(typ)});return (!q||projectMatch||unitMatch)&&(!area||p.location===area)&&typeMatch}
+const FAVORITES_KEY='nkRealEstateFavoritesV1';
+let favoriteItems=new Set();let favoritesOnly=false;
+try{const savedFavorites=JSON.parse(localStorage.getItem(FAVORITES_KEY)||'[]');if(Array.isArray(savedFavorites))favoriteItems=new Set(savedFavorites.filter(x=>typeof x==='string'));}catch(e){console.warn('Favorites could not be loaded',e)}
+function favoriteKey(kind,id,unitOrIndex){if(kind==='project')return 'project:'+id;const stableId=unitOrIndex&&typeof unitOrIndex==='object'?unitOrIndex._favoriteId:unitOrIndex;return 'unit:'+id+':'+stableId}
+function isFavorite(key){return favoriteItems.has(key)}
+function toggleFavorite(key){const wasFavorite=favoriteItems.has(key);if(wasFavorite)favoriteItems.delete(key);else favoriteItems.add(key);try{localStorage.setItem(FAVORITES_KEY,JSON.stringify([...favoriteItems]));}catch(e){if(wasFavorite)favoriteItems.add(key);else favoriteItems.delete(key);alert('Could not save favorites on this device.');return}render()}
+function favoriteButton(key,label){const on=isFavorite(key);return `<button type="button" class="starbtn ${on?'is-fav':''}" aria-label="${on?'Remove from':'Add to'} favorites: ${esc(label)}" aria-pressed="${on}" title="${on?'Remove from':'Add to'} favorites" onclick="toggleFavorite('${key}')">${on?'★':'☆'}</button>`}
+function bookmarkButton(key,label){const on=isFavorite(key);return `<button type="button" class="bookmarkbtn ${on?'is-fav':''}" aria-label="${on?'Remove from':'Add to'} favorites: ${esc(label)}" aria-pressed="${on}" title="${on?'Remove from':'Add to'} favorites" onclick="toggleFavorite('${key}')"><svg viewBox="0 0 16 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 2.5h10v15L8 14.2 3 17.5z"/></svg></button>`}
+function render(){
+ const q=document.getElementById('search').value.trim(),a=document.getElementById('areaFilter').value,t=document.getElementById('typeFilter').value;
+ const filtered=projects.filter(p=>matches(p,q,a,t)&&(!favoritesOnly||isFavorite(favoriteKey('project',p.id))||p.units.some((u,i)=>isFavorite(favoriteKey('unit',p.id,u)))));let total=0;
+ document.getElementById('projects').innerHTML=filtered.map(p=>{
+ total+=p.units.length;
+ const projectText=normSearch([p.name,p.developer,p.location].join(' '));const queryNorm=normSearch(q);const projectQuery=!!queryNorm&&projectText.includes(queryNorm);const exactCat=queryUnitCategory(q);const typeNorm=normSearch(t);const unitSearchOnly=!!queryNorm&&!projectQuery;const visibleUnits=p.units.map((u,i)=>({u,i})).filter(({u})=>(!unitSearchOnly||(exactCat?matchesUnitCategory(u,exactCat):searchableUnit(u).includes(queryNorm)))&&(!typeNorm||(()=>{const c=unitCategory(u.type);if(typeNorm==='villa')return c==='villa'||c==='standalone';if(typeNorm==='standalonevilla')return c==='standalone';if(typeNorm==='townhouse')return c==='town';if(typeNorm==='twinhouse')return c==='twin';if(typeNorm==='ivilla')return c==='ivilla';if(typeNorm==='other')return c==='other';if(typeNorm==='familyhouse')return c==='family';return normSearch(u.type).includes(typeNorm)})()));const projectIsFav=isFavorite(favoriteKey('project',p.id));const favoriteVisibleUnits=visibleUnits.filter(({u,i})=>!favoritesOnly||projectIsFav||isFavorite(favoriteKey('unit',p.id,u)));const units=favoriteVisibleUnits.map(({u,i})=>`<article class="unit" data-unit="${esc(p.id)}-${i}">
+ <div class="unithead"><div><div class="unitname-row"><div class="unittype">${esc(u.type)}</div>${bookmarkButton(favoriteKey('unit',p.id,u),p.name+' — '+u.type+' '+u.area+' m²')}</div><div class="area">${esc(u.areaLabel||"Area")} <strong class="unitarea" dir="ltr" style="unicode-bidi:isolate;display:inline-block">${esc(u.area)} m²</strong>${u.land?` · <span class="tr" data-ar="Land" data-en="Land">Land</span> <strong dir="ltr" style="unicode-bidi:isolate;display:inline-block">${esc(u.land)} m²</strong>`:''}${u.beds?` · <strong>${u.beds}</strong> <span class="tr" data-ar="beds" data-en="beds">Bedrooms</span>`:''}</div></div>
+ <div><div class="price">${u.priceMax?esc(shortMoney(u.price))+'–'+esc(shortMoney(u.priceMax)):esc(shortMoney(u.price))}</div><div class="currency">EGP</div></div></div>
+ ${u.extra?`<div class="area" style="margin-top:8px">${esc(u.extra)}</div>`:''}
+ <div class="unitline"></div><div class="downrow"><span><span class="tr" data-ar="Down Payment" data-en="Down Payment">Down Payment</span> ${u.dp??5}%</span><strong>${money(calcDp(u))}${u.priceMax?`–${money(Math.round(u.priceMax*(u.dp??5)/100))}`:'' } EGP</strong></div>
+ <div class="unitfoot"><span class="area">${esc(u.delivery||p.delivery)}</span><button class="smallbtn tr" data-ar="Edit" data-en="Edit" onclick="openEdit('${p.id}',${i})">Edit</button></div></article>`).join('');
+ const plans=(p.plans||[]).map(pl=>`<div class="plan"><h4>${esc(pl[0])}</h4><p>${esc(pl[1])}</p></div>`).join('');
+ return `<section class="project" data-project="${p.id}"><div class="projecthead"><div class="head-main"><div class="cash"><small class="tr" data-ar="CASH DISCOUNT" data-en="CASH DISCOUNT">Cash Discount</small><strong>${esc(p.cash)}</strong></div><div class="projecttitle"><h2 style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">${esc(p.name)}${favoriteButton(favoriteKey('project',p.id),p.name)}</h2><div class="developer">${esc(p.developer)}</div><div class="range"><span class="tr" data-ar="Areas" data-en="Areas">Areas</span><strong dir="ltr" style="unicode-bidi:isolate;display:inline-block">${esc(areaRange(p))}</strong></div><div class="meta"><span class="pill">${esc(p.location)}</span><span class="pill">${esc(p.type)}</span><span class="pill">${esc(p.finishing)}</span></div></div></div><div class="details">
+ <div class="detail"><span class="tr" data-ar="Delivery" data-en="Delivery">Delivery</span><b>${esc(p.delivery)}</b></div><div class="detail"><span class="tr" data-ar="Down Payment" data-en="Down Payment">Down Payment</span><b>${esc(p.dpText)}</b></div><div class="detail"><span class="tr" data-ar="Installment Period" data-en="Installment Period">Installment Period</span><b>${esc(p.installment)}</b></div><div class="detail"><span class="tr" data-ar="Maintenance" data-en="Maintenance">Maintenance</span><b>${esc(p.maintenance)}</b></div>
+ </div><div class="actions"><button class="action" onclick="openProjectFiles('${p.id}','pdf')">PDF</button><button class="action" onclick="openProjectFiles('${p.id}','photo')">Photos</button><button class="action primary" onclick="openProjectEdit('${p.id}')">Edit Project</button><button class="action green" onclick="openAddUnit('${p.id}')">+ Add Unit</button></div></div>
+ <div class="projectbody">
+ <div class="sectiontitle"><h3 class="tr" data-ar="Units & Prices" data-en="Units & Prices">Units & Prices</h3><span>${favoriteVisibleUnits.length} <span class="tr" data-ar="units" data-en="units">units</span></span></div><div class="units">${units}</div>
+ ${plans?`<div class="sectiontitle"><h3 class="tr" data-ar="Payment Plans" data-en="Payment Plans">Payment Plans</h3><span class="tr" data-ar="Based on available data" data-en="Based on available data">Based on available data</span></div><div class="plans">${plans}</div>`:''}
+ ${p.notes?`<div class="note"><b>Notes:</b> ${esc(p.notes)}</div>`:''}
+ </div></section>`;
+ }).join('');
+ document.getElementById('empty').style.display=filtered.length?'none':'block';
+ document.getElementById('unitCount').textContent=projects.reduce((n,p)=>n+p.units.length,0);
+ document.getElementById('projectCount').textContent=projects.length;
+ applyLanguage();
+}
+function applyLanguage(){
+ document.documentElement.lang='en';
+ document.documentElement.dir='ltr';
+ document.getElementById('search').placeholder='Search by project, developer, unit type, area, or price...';
+ document.getElementById('areaFilter').options[0].text='All Locations';
+ document.getElementById('typeFilter').options[0].text='All Unit Types';
+ document.querySelectorAll('.tr').forEach(el=>{const v=el.dataset.en;if(v)el.textContent=v});
+ document.querySelectorAll('.localtag').forEach(el=>el.textContent='● Works without an account or cloud database');
+ document.querySelectorAll('.note').forEach(el=>{const b=el.querySelector('b');if(b)b.textContent='Notes:'});
+ document.getElementById('empty').textContent=favoritesOnly?'No favorites yet. Use the star beside a project name or the bookmark beside a unit.':'No matching results.';
+ document.querySelector('footer').textContent='NK Real Estate · Standalone version without cloud services · project and unit edits are saved locally on this device.';
+}
+
+let fileProjectId=null;
+let fileMode='pdf';
+let fileDbPromise=null;
+function openFilesDb(){
+ if(fileDbPromise)return fileDbPromise;
+ fileDbPromise=new Promise((resolve,reject)=>{
+  if(!('indexedDB' in window)){reject(new Error('IndexedDB unavailable'));return}
+  const req=indexedDB.open('NKRealEstateProjectFiles',1);
+  req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains('files')){const s=db.createObjectStore('files',{keyPath:'id',autoIncrement:true});s.createIndex('projectId','projectId',{unique:false})}};
+  req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error||new Error('DB open failed'));
+ });
+ return fileDbPromise;
+}
+async function getProjectFiles(projectId){
+ const db=await openFilesDb();
+ return new Promise((resolve,reject)=>{const tx=db.transaction('files','readonly');const req=tx.objectStore('files').index('projectId').getAll(projectId);req.onsuccess=()=>resolve(req.result||[]);req.onerror=()=>reject(req.error)});
+}
+async function saveProjectFile(projectId,file,kind){
+ const db=await openFilesDb();
+ const record={projectId,kind,name:file.name,type:file.type||'',size:file.size,createdAt:Date.now(),blob:file};
+ return new Promise((resolve,reject)=>{const tx=db.transaction('files','readwrite');tx.objectStore('files').add(record);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)});
+}
+async function deleteProjectFile(id){
+ const db=await openFilesDb();
+ return new Promise((resolve,reject)=>{const tx=db.transaction('files','readwrite');tx.objectStore('files').delete(Number(id));tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)});
+}
+function prettySize(bytes){if(bytes<1024)return bytes+' B';if(bytes<1024*1024)return (bytes/1024).toFixed(0)+' KB';return (bytes/(1024*1024)).toFixed(1)+' MB'}
+async function openProjectFiles(projectId,kind='pdf'){
+ fileProjectId=projectId;fileMode=kind;
+ const p=projects.find(x=>x.id===projectId);
+ document.getElementById('filesTitle').textContent=(currentLang==='ar'?'Project files: ':'Project files: ')+p.name;
+ document.getElementById('pdfUpload').parentElement.style.display=kind==='pdf'?'grid':'none';
+ document.getElementById('photoUpload').parentElement.style.display=kind==='photo'?'grid':'none';
+ document.getElementById('filesHint').textContent=kind==='photo'?'Select multiple images at once. They will appear together in one gallery; open or delete any image.':'Add multiple PDF files. They will appear in one list; preview or delete any file.';
+ document.getElementById('filesModal').style.display='flex';
+ await renderProjectFiles();
+}
+async function renderProjectFiles(){
+ const list=document.getElementById('projectFilesList');
+ list.innerHTML='<div style="color:#64748b;font-size:13px">…</div>';
+ try{
+  const files=(await getProjectFiles(fileProjectId)).filter(f=>f.kind===fileMode);
+  if(!files.length){list.innerHTML=`<div style="padding:14px;border:1px dashed #cbd5e1;border-radius:12px;color:#64748b;font-size:13px">${currentLang==='ar'?(fileMode==='photo'?'No photos have been added to this project yet. Use the add button to select multiple images.':'No PDFs have been added to this project yet. Use the add button to select one or more files.'):(fileMode==='photo'?'No photos added yet. Use the add button to select multiple images.':'No PDFs added yet. Use the add button to select one or more files.')}</div>`;return}
+  if(fileMode==='photo'){
+   list.style.display='grid';list.style.gridTemplateColumns='repeat(auto-fill,minmax(120px,1fr))';list.style.gap='10px';
+   list.innerHTML=files.map(f=>`<div style="border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;background:#f8fafc;min-width:0"><button onclick="viewProjectFile(${f.id})" style="display:block;width:100%;padding:0;border:0;background:transparent"><img id="photo-${f.id}" alt="${escapeHtml(f.name)}" style="width:100%;height:125px;object-fit:cover;display:block;background:#e2e8f0"><span style="display:block;padding:7px;font-size:12px;text-align:start;overflow-wrap:anywhere;color:#0f172a">${escapeHtml(f.name)}</span></button><div style="padding:0 7px 7px"><button class="smallbtn" style="width:100%;color:#b91c1c" onclick="removeProjectFile(${f.id})">${currentLang==='ar'?'Delete':'Delete'}</button></div></div>`).join('');
+   for(const f of files){const img=document.getElementById('photo-'+f.id);if(img)img.src=URL.createObjectURL(f.blob)}
+  }else{
+   list.style.display='grid';list.style.gridTemplateColumns='1fr';list.style.gap='8px';
+   list.innerHTML=files.map(f=>`<div style="display:flex;align-items:center;gap:8px;border:1px solid #e2e8f0;border-radius:12px;padding:10px"><div style="width:42px;height:48px;border-radius:8px;background:#fee2e2;color:#991b1b;display:grid;place-items:center;font-weight:800;flex-shrink:0">PDF</div><div style="flex:1;min-width:0"><div style="font-weight:700;overflow-wrap:anywhere">${escapeHtml(f.name)}</div><div style="font-size:12px;color:#64748b">${prettySize(f.size)}</div></div><button class="smallbtn" onclick="openProjectPdf(${f.id})">${currentLang==='ar'?'Open':'Open'}</button><button class="smallbtn" style="color:#b91c1c" onclick="removeProjectFile(${f.id})">${currentLang==='ar'?'Delete':'Delete'}</button></div>`).join('');
+  }
+ }catch(e){list.style.display='grid';list.innerHTML=`<div class="note">${currentLang==='ar'?'Unable to access local storage in this browser. Try opening the app in Safari.':'Local storage is unavailable in this browser. Try opening the site in Safari.'}</div>`}
+}
+function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+// Open PDFs in the browser's native viewer so every page is available, including on iOS Safari.
+async function openProjectPdf(id){
+ const tab=window.open('about:blank','_blank');
+ try{
+  if(!tab){alert(currentLang==='ar'?'Allow pop-ups to open the full PDF.':'Allow pop-ups to open the full PDF.');return}
+  const files=await getProjectFiles(fileProjectId);const f=files.find(x=>x.id===id);
+  if(!f||f.kind!=='pdf'){tab.close();return}
+  const url=URL.createObjectURL(f.blob);
+  tab.location.href=url;
+  // Keep the object URL alive while the native viewer is using it.
+  setTimeout(()=>{try{URL.revokeObjectURL(url)}catch(e){}},10*60*1000);
+ }catch(e){if(tab)tab.close();alert(currentLang==='ar'?'Unable to open the PDF. Try downloading it or opening it in Safari.':'Unable to open the PDF. Try downloading it or opening it in Safari.')}
+}
+async function viewProjectFile(id){
+ try{
+  const files=await getProjectFiles(fileProjectId);const f=files.find(x=>x.id===id);if(!f)return;
+  const url=URL.createObjectURL(f.blob);
+  document.getElementById('previewTitle').textContent=f.name;
+  const content=document.getElementById('previewContent');
+  if(f.kind==='photo'){
+   content.innerHTML=`<img src="${url}" alt="${escapeHtml(f.name)}" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:10px">`;
+  }else{
+   content.style.display='block';
+   content.innerHTML=`<iframe title="${escapeHtml(f.name)}" src="${url}" style="width:100%;height:100%;min-height:60vh;border:0;border-radius:10px;background:#f8fafc"></iframe>`;
+  }
+  document.getElementById('previewModal').style.display='flex';
+  document.getElementById('previewModal').dataset.objectUrl=url;
+ }catch(e){alert(currentLang==='ar'?'Unable to preview the file in the page.':'Unable to preview this file in the page.')}
+}
+function closePreview(){
+ const modal=document.getElementById('previewModal');const url=modal.dataset.objectUrl;
+ if(url)URL.revokeObjectURL(url);
+ modal.dataset.objectUrl='';
+ document.getElementById('previewContent').innerHTML='';
+ document.getElementById('previewContent').style.display='grid';
+ modal.style.display='none';
+}
+async function removeProjectFile(id){
+ if(!confirm(currentLang==='ar'?'Are you sure you want to delete this file?':'Delete this file?'))return;
+ await deleteProjectFile(id);await renderProjectFiles();
+}
+document.getElementById('pdfUpload').addEventListener('change',async e=>{
+ const files=Array.from(e.target.files||[]);for(const f of files){if(f.type==='application/pdf'||f.name.toLowerCase().endsWith('.pdf'))await saveProjectFile(fileProjectId,f,'pdf')}
+ e.target.value='';await renderProjectFiles();
+});
+document.getElementById('photoUpload').addEventListener('change',async e=>{
+ const files=Array.from(e.target.files||[]);for(const f of files){if(f.type.startsWith('image/'))await saveProjectFile(fileProjectId,f,'photo')}
+ e.target.value='';await renderProjectFiles();
+});
+document.getElementById('closeFiles').onclick=()=>document.getElementById('filesModal').style.display='none';
+document.getElementById('previewModal').addEventListener('click',e=>{if(e.target.id==='previewModal')closePreview()});
+
+function saveProjects(){try{localStorage.setItem('nkRealEstateProjectsV1',JSON.stringify(projects));return true}catch(e){alert('Unable to save changes on this device. Keep a backup copy of the original file.');return false}}
+function englishizeSavedValue(value){if(typeof value!=='string')return value;const exact={'10% أو 20% حسب الوحدة':'10% or 20%, depending on the unit','8 سنوات':'8 years','غير محدد':'Not specified','متشطبة':'Fully Finished','استلام فوري':'Ready to Move','بعد 3 سنوات':'In 3 years','بعد 3 سنين':'In 3 years','مقدم 5% للـ iVilla و20% للفيلات المستقلة':'5% for iVilla and 20% for standalone villas'};if(exact[value.trim()])return exact[value.trim()];return value.replace(/سنوات|سنين/g,'years').replace(/غير محدد/g,'Not specified').replace(/استلام فوري/g,'Ready to Move').replace(/متشطبة/g,'Fully Finished').replace(/التشطيب/g,'Finishing').replace(/المقدم/g,'Down Payment').replace(/حسب الوحدة/g,'depending on the unit').replace(/أو/g,'or').replace(/بعد/g,'In');}
+try{const saved=localStorage.getItem('nkRealEstateProjectsV1');if(saved){const data=JSON.parse(saved);if(Array.isArray(data)){data.forEach(sp=>{let p=projects.find(x=>x.id===sp.id);if(!p&&sp&&typeof sp.id==='string'&&Array.isArray(sp.units)){p=sp;projects.push(p)}if(p&&Array.isArray(sp.units)){Object.assign(p,sp);['dpText','installment','delivery','finishing','notes','type','cash','maintenance'].forEach(k=>{if(typeof p[k]==='string')p[k]=englishizeSavedValue(p[k])});p.units.forEach(u=>['type','delivery','finishing','extra'].forEach(k=>{if(typeof u[k]==='string')u[k]=englishizeSavedValue(u[k])}));}});localStorage.setItem('nkRealEstateProjectsV1',JSON.stringify(projects));}}}catch(e){console.warn('Local saved project data could not be loaded',e)}
+
+// One-time migration: make sure the latest STEI8HT offer details are not overwritten
+// by older localStorage data saved before the latest unit update.
+try{
+ const migrationKey='nkStei8htOfferMigrationV2';
+ if(localStorage.getItem(migrationKey)!=='done'){
+  const sp=projects.find(p=>p.id==='stei8ht');
+  if(sp){
+   sp.delivery='2 years (confirm per unit)';
+   sp.finishing='Unfinished';
+   sp.notes='Updated from user-provided broker messages and project brochure screenshots. Delivery: 2 years; finishing: unfinished, per latest user clarification. Twin House: 345 m² BUA, EGP 42M, payment over 7 years per message. Select Villa V16: 410 m² BUA, EGP 62M. Another 486 m² standalone villa remains listed at EGP 81M from earlier supplied data. Land areas, current availability, exact payment schedule, and whether the same delivery/finishing applies to every unit should be confirmed before client presentation.';
+   const twin=sp.units.find(u=>unitCategory(u.type)==='twin'&&Number(u.area)===345);
+   if(twin){
+    twin.price=42000000;twin.areaLabel='BUA';twin.delivery='2 years';twin.finishing='Unfinished';
+    twin.extra='Payment over 7 years per supplied message; land area not provided';
+   }else{
+    sp.units.unshift({type:'Twin House',area:345,areaLabel:'BUA',price:42000000,dp:5,delivery:'2 years',finishing:'Unfinished',extra:'Payment over 7 years per supplied message; land area not provided'});
+   }
+   const villa410=sp.units.find(u=>Number(u.area)===410&&normSearch(u.type).includes('selectvillav16'));
+   if(villa410){
+    villa410.price=62000000;villa410.areaLabel='BUA';villa410.delivery='2 years';villa410.finishing='Unfinished';
+    villa410.extra='Price from supplied screenshot; land area and payment details not provided';
+   }else{
+    const old410=sp.units.find(u=>Number(u.area)===410&&unitCategory(u.type)==='standalone');
+    if(old410){old410.type='Standalone Villa · Select Villa V16';old410.price=62000000;old410.areaLabel='BUA';old410.delivery='2 years';old410.finishing='Unfinished';old410.extra='Price from supplied screenshot; land area and payment details not provided';}
+    else sp.units.push({type:'Standalone Villa · Select Villa V16',area:410,areaLabel:'BUA',price:62000000,dp:5,delivery:'2 years',finishing:'Unfinished',extra:'Price from supplied screenshot; land area and payment details not provided'});
+   }
+   sp.units.forEach(u=>{u.delivery=u.delivery||'2 years';u.finishing='Unfinished';});
+   saveProjects();
+  }
+  localStorage.setItem(migrationKey,'done');
+ }
+}catch(e){console.warn('STEI8HT offer migration could not be completed',e)}
+
+// Give every unit a persistent identity so favorites stay attached to the same unit
+// even if units are added or reordered. Convert older index-based favorite keys once.
+try{
+ let assigned=false;
+ for(const p of projects){
+  for(const u of (Array.isArray(p.units)?p.units:[])){
+   if(!u._favoriteId){u._favoriteId='unit-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10);assigned=true;}
+  }
+ }
+ const migrated=[];
+ for(const key of favoriteItems){
+  const m=key.match(/^unit:(.+):(\d+)$/);
+  if(m){const p=projects.find(x=>x.id===m[1]);const u=p&&p.units[Number(m[2])];if(u&&u._favoriteId)migrated.push(favoriteKey('unit',p.id,u));else migrated.push(key)}
+  else migrated.push(key);
+ }
+ favoriteItems=new Set(migrated);
+ localStorage.setItem(FAVORITES_KEY,JSON.stringify([...favoriteItems]));
+ if(assigned)saveProjects();
+}catch(e){console.warn('Stable unit favorites could not be migrated',e)}
+
+let editTarget=null;
+function openAddUnit(id){const p=projects.find(p=>p.id===id);if(!p)return;editTarget={id,index:-1};document.getElementById('unitModalTitle').textContent='Add Unit';document.getElementById('editType').value='';document.getElementById('editArea').value='';document.getElementById('editPrice').value='';document.getElementById('editPriceMax').value='';document.getElementById('editDp').value='5';document.getElementById('editUnitDelivery').value=p.delivery||'';document.getElementById('editUnitFinishing').value=p.finishing||'';document.getElementById('editUnitBeds').value='';document.getElementById('editUnitLand').value='';document.getElementById('editUnitExtra').value='';document.getElementById('modalback').style.display='flex'}
+function openEdit(id,index){editTarget={id,index};document.getElementById('unitModalTitle').textContent='Edit Unit Details';const u=projects.find(p=>p.id===id).units[index];document.getElementById('editType').value=u.type;document.getElementById('editArea').value=u.area;document.getElementById('editPrice').value=u.price;document.getElementById('editPriceMax').value=u.priceMax??'';document.getElementById('editDp').value=u.dp??5;document.getElementById('editUnitDelivery').value=u.delivery||'';document.getElementById('editUnitFinishing').value=u.finishing||'';document.getElementById('editUnitBeds').value=u.beds??'';document.getElementById('editUnitLand').value=u.land??'';document.getElementById('editUnitExtra').value=u.extra||'';document.getElementById('modalback').style.display='flex'}
+document.getElementById('cancelEdit').onclick=()=>document.getElementById('modalback').style.display='none';
+document.getElementById('saveEdit').onclick=()=>{if(!editTarget)return;const p=projects.find(p=>p.id===editTarget.id);if(!p)return;const originalUnit=editTarget.index>=0?p.units[editTarget.index]:null;const originalSnapshot=originalUnit?JSON.parse(JSON.stringify(originalUnit)):null;const areaRaw=document.getElementById('editArea').value,priceRaw=document.getElementById('editPrice').value,maxRaw=document.getElementById('editPriceMax').value,dpRaw=document.getElementById('editDp').value;const area=Number(areaRaw),price=Number(priceRaw),priceMax=maxRaw.trim()===''?null:Number(maxRaw),dp=Number(dpRaw);if(areaRaw.trim()===''||!Number.isFinite(area)||area<=0||priceRaw.trim()===''||!Number.isFinite(price)||price<0||(priceMax!==null&&(!Number.isFinite(priceMax)||priceMax<price))||dpRaw.trim()===''||!Number.isFinite(dp)||dp<0||dp>100){alert('Please check the area, minimum price, optional maximum price, and down payment percentage. Maximum price must be greater than or equal to minimum price.');return}const typeValue=document.getElementById('editType').value.trim();if(!typeValue){alert('Please enter a unit type.');return}const bedsRaw=document.getElementById('editUnitBeds').value,landRaw=document.getElementById('editUnitLand').value;const unitData={_favoriteId:'unit-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10),type:typeValue,area,price,dp,delivery:document.getElementById('editUnitDelivery').value.trim(),finishing:document.getElementById('editUnitFinishing').value.trim(),beds:bedsRaw===''?undefined:Number(bedsRaw),land:landRaw===''?undefined:Number(landRaw),extra:document.getElementById('editUnitExtra').value.trim()};if(priceMax!==null)unitData.priceMax=priceMax;if(editTarget.index===-1){p.units.push(unitData)}else{Object.assign(originalUnit,unitData);if(priceMax===null)delete originalUnit.priceMax}if(!saveProjects()){if(editTarget.index===-1)p.units.pop();else{Object.keys(originalUnit).forEach(k=>delete originalUnit[k]);Object.assign(originalUnit,originalSnapshot)}return}document.getElementById('modalback').style.display='none';render()};
+let projectEditId=null;
+function openProjectEdit(id){const p=projects.find(x=>x.id===id);if(!p)return;projectEditId=id;document.querySelector('#projectEditModal h3').textContent='Edit Project Details';document.getElementById('saveProjectEdit').textContent='Save Project Details';const fields={projName:p.name,projDeveloper:p.developer,projLocation:p.location,projType:p.type,projFinishing:p.finishing,projDelivery:p.delivery,projDp:p.dpText,projInstallment:p.installment,projCash:p.cash,projMaintenance:p.maintenance,projNotes:p.notes||''};Object.entries(fields).forEach(([id,v])=>document.getElementById(id).value=v??'');document.getElementById('projectEditModal').style.display='flex'}
+function openAddProject(){projectEditId='__new__';document.querySelector('#projectEditModal h3').textContent='Add New Project';document.getElementById('saveProjectEdit').textContent='Add Project';const fields=['projName','projDeveloper','projLocation','projType','projFinishing','projDelivery','projDp','projInstallment','projCash','projMaintenance','projNotes'];fields.forEach(id=>document.getElementById(id).value='');document.getElementById('projectEditModal').style.display='flex'}
+document.getElementById('addProjectButton').addEventListener('click',openAddProject);
+document.getElementById('cancelProjectEdit').onclick=()=>document.getElementById('projectEditModal').style.display='none';
+document.getElementById('saveProjectEdit').onclick=()=>{if(!projectEditId)return;const val=id=>document.getElementById(id).value.trim();const name=val('projName');if(!name){alert('Please enter a project name.');return}let p;if(projectEditId==='__new__'){const base=name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'project';let id=base,n=2;while(projects.some(x=>x.id===id))id=base+'-'+n++;p={id,name,developer:val('projDeveloper'),location:val('projLocation'),type:val('projType'),finishing:val('projFinishing'),delivery:val('projDelivery'),dpText:val('projDp'),installment:val('projInstallment'),cash:val('projCash')||'—',maintenance:val('projMaintenance')||'—',notes:val('projNotes'),units:[],plans:[]};projects.push(p)}else{p=projects.find(x=>x.id===projectEditId);if(!p)return;const before=JSON.parse(JSON.stringify(p));p.name=name;p.developer=val('projDeveloper');p.location=val('projLocation');p.type=val('projType');p.finishing=val('projFinishing');p.delivery=val('projDelivery');p.dpText=val('projDp');p.installment=val('projInstallment');p.cash=val('projCash');p.maintenance=val('projMaintenance');p.notes=val('projNotes');if(!saveProjects()){Object.keys(p).forEach(k=>delete p[k]);Object.assign(p,before);return}document.getElementById('projectEditModal').style.display='none';render();return}if(!saveProjects()){if(projectEditId==='__new__')projects.pop();return}document.getElementById('projectEditModal').style.display='none';render()};
+
+['search','areaFilter','typeFilter'].forEach(id=>document.getElementById(id).addEventListener(id==='search'?'input':'change',render));
+document.getElementById('favoritesToggle').addEventListener('click',()=>{favoritesOnly=!favoritesOnly;const b=document.getElementById('favoritesToggle');b.setAttribute('aria-pressed',String(favoritesOnly));b.textContent=favoritesOnly?'★ Favorites Only':'☆ Favorites';render()});
+render();
+</script>
+</body>
+</html>
